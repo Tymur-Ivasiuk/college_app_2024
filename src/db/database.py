@@ -5,17 +5,9 @@ from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine, async_sess
 from sqlalchemy.orm import DeclarativeBase
 
 from src.core.config import settings
-from .db_utils import intpk, updated_at, created_at, str50
 
 
 class Base(DeclarativeBase):
-    type_annotation_map = {
-        intpk: intpk,
-        str50: str50,
-        updated_at: updated_at,
-        created_at: created_at,
-    }
-
     @abstractmethod
     def to_read_model(self):
         raise NotImplemented
