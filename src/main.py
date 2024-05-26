@@ -1,12 +1,22 @@
 from fastapi import FastAPI
-from fastapi import APIRouter
+from auth.router import auth_router, register_router
 
 import uvicorn
 
 app = FastAPI(
     title="College App",
     description="Ivasiuk Tymur Diplom 2024",
+)
 
+app.include_router(
+    auth_router,
+    prefix="/users",
+    tags=["Auth"]
+)
+app.include_router(
+    register_router,
+    prefix="/users",
+    tags=["Auth"]
 )
 
 
