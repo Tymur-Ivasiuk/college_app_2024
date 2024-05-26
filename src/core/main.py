@@ -1,5 +1,7 @@
 from fastapi import FastAPI
-from auth.router import auth_router, register_router
+
+from api.endpoints.auth.user import auth_router, register_router
+from api.endpoints.auth.role import router as role_router
 
 import uvicorn
 
@@ -10,7 +12,7 @@ app = FastAPI(
 
 app.include_router(
     auth_router,
-    prefix="/users",
+    prefix="/users/jwt",
     tags=["Auth"]
 )
 app.include_router(
@@ -19,10 +21,18 @@ app.include_router(
     tags=["Auth"]
 )
 
+app.include_router(
+    role_router,
+    prefix="/role",
+    tags=["Auth"]
+)
+
 
 @app.get("/", tags=["Test"])
-def hello():
-    return "Hello"
+def ping():
+    return {
+        "response": "pong"
+    }
 
 
 

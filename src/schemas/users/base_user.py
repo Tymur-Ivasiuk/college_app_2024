@@ -2,7 +2,7 @@ from fastapi_users import schemas, models
 from pydantic import EmailStr
 
 
-class UserReadDTO(schemas.BaseUser[int]):
+class BaseUserReadDTO(schemas.BaseUser[int]):
     id: models.ID
 
     first_name: str
@@ -15,7 +15,7 @@ class UserReadDTO(schemas.BaseUser[int]):
     is_verified: bool = False
 
 
-class UserCreateDTO(schemas.BaseUserCreate):
+class BaseUserCreateDTO(schemas.BaseUserCreate):
     first_name: str
     last_name: str
     patronymic: str
