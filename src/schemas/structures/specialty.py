@@ -1,5 +1,5 @@
-from typing import Optional
 from pydantic import BaseModel
+from .department import DepartmentReadDTO
 
 
 class SpecialtyCreateDTO(BaseModel):
@@ -10,5 +10,7 @@ class SpecialtyCreateDTO(BaseModel):
 
 class SpecialtyReadDTO(SpecialtyCreateDTO):
     id: int
-    department_id: Optional["DepartmentReadDTO"]
+    department_id: "DepartmentReadDTO" = None
 
+
+SpecialtyReadDTO.update_forward_refs()

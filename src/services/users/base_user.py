@@ -1,5 +1,5 @@
 from utils import AbstractRepository
-from schemas.users import BaseUserCreateDTO
+from schemas.users.base_user import BaseUserCreateDTO
 
 
 class BaseUserService:

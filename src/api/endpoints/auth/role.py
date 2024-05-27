@@ -1,7 +1,7 @@
 from typing import List, Annotated
 
 from fastapi import APIRouter, Depends
-from schemas.users import RoleCreateDTO, RoleReadDTO
+from schemas.users.role import RoleCreateDTO, RoleReadDTO
 
 from services.users import RoleService
 from api.dependencies.auth import role_service

@@ -1,5 +1,5 @@
 from core.auth_config import auth_backend, fastapi_users
-from schemas.users import BaseUserReadDTO, BaseUserCreateDTO
+from schemas.users.base_user import BaseUserReadDTO, BaseUserCreateDTO
 
 auth_router = fastapi_users.get_auth_router(
     auth_backend

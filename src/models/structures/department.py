@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from db import Base, intpk, str50
-from schemas.structures import DepartmentReadDTO
+from schemas.structures.department import DepartmentReadDTO
 
 
 class Department(Base):

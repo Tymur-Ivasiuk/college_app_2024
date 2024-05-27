@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column
 
 from db import Base, intpk
-from schemas.structures import SpecialtyReadDTO
+from schemas.structures.specialty import SpecialtyReadDTO
 
 
 class Specialty(Base):

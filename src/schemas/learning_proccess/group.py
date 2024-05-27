@@ -1,5 +1,9 @@
 from typing import Optional
+
 from pydantic import BaseModel
+
+from ..structures.specialty import SpecialtyReadDTO
+from ..users.teacher import TeacherReadDTO
 
 
 class GroupCreateDTO(BaseModel):
@@ -13,5 +17,8 @@ class GroupCreateDTO(BaseModel):
 
 class GroupReadDTO(GroupCreateDTO):
     id: int
-    curator_id: Optional["TeacherReadDTO"]
+    curator_id: Optional["TeacherReadDTO"] = None
     specialty_id: "SpecialtyReadDTO"
+
+
+GroupReadDTO.update_forward_refs()

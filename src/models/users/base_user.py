@@ -4,7 +4,7 @@ from sqlalchemy import String, Boolean, ForeignKey, Integer
 from sqlalchemy.orm import Mapped, mapped_column
 
 from db import Base, intpk, str50, updated_at, created_at
-from schemas.users import BaseUserReadDTO
+from schemas.users.base_user import BaseUserReadDTO
 
 
 class BaseUser(SQLAlchemyBaseUserTable[int], Base):

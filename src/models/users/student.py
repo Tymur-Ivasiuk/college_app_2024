@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from db import Base, intpk
-from schemas.users import StudentReadDTO
+from schemas.users.student import StudentReadDTO
 
 
 class Student(Base):
