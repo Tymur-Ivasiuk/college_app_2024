@@ -1,7 +1,7 @@
 from typing import Annotated, List, Union
 from fastapi import APIRouter, Depends
 
-from api.dependencies.management_dependencies import teacher_service
+from api.dependencies.users_dependencies import teacher_service
 from services.users.teacher import TeacherService
 from schemas.users.teacher import TeacherReadDTO, TeacherWithUserCreateDTO, TeacherWithoutUserCreateDTO
 

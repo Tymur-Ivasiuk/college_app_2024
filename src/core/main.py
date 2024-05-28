@@ -1,34 +1,20 @@
+import uvicorn
+
 from fastapi import FastAPI
 
-from api.endpoints.auth.user import auth_router, register_router
-from api.endpoints.auth.role import router as role_router
-from api.endpoints.management.users_management import personal_router
-
-import uvicorn
+from api.endpoints.users.auth.user_endpoints import auth_router
+from api.endpoints.users.personal_management import personal_router
+from api.endpoints.structures.structures_management import structures_router
 
 app = FastAPI(
     title="College App",
     description="Ivasiuk Tymur Diplom 2024",
 )
 
-app.include_router(
-    auth_router,
-    prefix="/users/jwt",
-    tags=["Auth"]
-)
-app.include_router(
-    register_router,
-    prefix="/users",
-    tags=["Auth"]
-)
-
-app.include_router(
-    role_router,
-    prefix="/role",
-    tags=["Auth"]
-)
+app.include_router(auth_router)
 
 app.include_router(personal_router)
+app.include_router(structures_router)
 
 
 @app.get("/", tags=["Test"])
