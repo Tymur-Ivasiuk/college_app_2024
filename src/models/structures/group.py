@@ -2,7 +2,7 @@ from sqlalchemy import ForeignKey, String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from db import Base, intpk
-from schemas.learning_proccess.group import GroupReadDTO
+from schemas.structures.group import GroupReadDTO
 
 
 class Group(Base):

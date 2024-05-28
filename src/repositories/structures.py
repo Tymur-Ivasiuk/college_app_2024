@@ -8,3 +8,7 @@ class DepartmentRepository(SQLAlchemyRepository):
 
 class SpecialtyRepository(SQLAlchemyRepository):
     model = Specialty
+
+
+class GroupRepository(SQLAlchemyRepository):
+    model = Group

@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 from .base_user import BaseUserReadDTO, BaseUserCreateDTO
-from ..learning_proccess.group import GroupReadDTO
+from ..structures.group import GroupReadDTO
 
 
 class StudentWithUserCreateDTO(BaseModel):
