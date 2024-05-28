@@ -1,5 +1,5 @@
 from sqlalchemy import ForeignKey, String
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from db import Base, intpk
 from schemas.learning_proccess.group import GroupReadDTO
@@ -19,6 +19,8 @@ class Group(Base):
         ForeignKey("teacher.id", ondelete="SET NULL"), nullable=True)
     specialty_id: Mapped[int] = mapped_column(
         ForeignKey("specialty.id", ondelete="CASCADE"))
+
+    students: Mapped["Student"] = relationship("Student", back_populates="group")
 
     def to_read_model(self):
         return GroupReadDTO(**self.__dict__)

@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 from schemas.users.role import RoleCreateDTO, RoleReadDTO
 
 from services.users import RoleService
-from api.dependencies.auth import role_service
+from api.dependencies.users_dependencies import role_service
 
 router = APIRouter()
 

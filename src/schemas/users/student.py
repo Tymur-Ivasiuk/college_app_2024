@@ -1,13 +1,15 @@
+from pydantic import BaseModel
+
 from .base_user import BaseUserReadDTO, BaseUserCreateDTO
 from ..learning_proccess.group import GroupReadDTO
 
 
-class StudentCreateDTO(BaseUserCreateDTO):
-    """
-    - User creation (if user_id == None)
-    - Student creation
-    """
-    user_id: int = None
+class StudentWithUserCreateDTO(BaseModel):
+    user_id: int
+    group_id: int
+
+
+class StudentWithoutUserCreateDTO(BaseUserCreateDTO):
     group_id: int
 
 

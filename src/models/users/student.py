@@ -11,10 +11,11 @@ class Student(Base):
     id: Mapped[intpk]
 
     group_id: Mapped[int] = mapped_column(ForeignKey("group.id"))
+    group: Mapped["Group"] = relationship("Group", back_populates="students")
 
     # One2One relationship
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-    user: Mapped["User"] = relationship(back_populates="teacher")
+    user: Mapped["BaseUser"] = relationship("BaseUser", lazy="selectin")
 
     __table_args__ = (UniqueConstraint("user_id"),)
 

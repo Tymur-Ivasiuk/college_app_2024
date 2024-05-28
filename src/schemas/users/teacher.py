@@ -1,19 +1,26 @@
+from typing import Optional
+
+from pydantic import BaseModel
+
 from .base_user import BaseUserReadDTO, BaseUserCreateDTO
 from ..structures.department import DepartmentReadDTO
 
 
-class TeacherCreateDTO(BaseUserCreateDTO):
-    """
-    - User creation (if user_id == None)
-    - Teacher creation
-    """
-    user_id: int = None
-    department_id: int
+class TeacherWithUserCreateDTO(BaseModel):
+    user_id: int
+    desc: Optional[str]
+    department_id: Optional[int] = None
+
+
+class TeacherWithoutUserCreateDTO(BaseUserCreateDTO):
+    desc: Optional[str]
+    department_id: Optional[int] = None
 
 
 class TeacherReadDTO(BaseUserReadDTO):
     id: int
-    department_id: "DepartmentReadDTO"
+    desc: Optional[str] = None
+    department_id: Optional["DepartmentReadDTO"] = None
 
 
 TeacherReadDTO.update_forward_refs()

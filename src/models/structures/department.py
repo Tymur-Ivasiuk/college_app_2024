@@ -13,7 +13,8 @@ class Department(Base):
     head_id: Mapped[int] = mapped_column(ForeignKey('teacher.id'))
 
     # Meny2One relationship
-    teacher_ids: Mapped[list["Teacher"]] = relationship(back_populates="department_id")
+    teachers: Mapped["Teacher"] = relationship(
+        "Teacher", back_populates="department", foreign_keys="Teacher.department_id")
 
     def to_read_model(self):
         return DepartmentReadDTO(**self.__dict__)

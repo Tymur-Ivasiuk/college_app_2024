@@ -11,11 +11,13 @@ class Teacher(Base):
     id: Mapped[intpk]
     desc: Mapped[str] = mapped_column(nullable=True)  # example ("Math teacher")
 
-    department_id: Mapped[int] = mapped_column(ForeignKey("department.id"))
+    department_id: Mapped[int | None] = mapped_column(ForeignKey("department.id"), nullable=True)
+    department: Mapped["Department"] = relationship(
+        "Department", back_populates="teachers", foreign_keys=[department_id])
 
     # One2One relationship
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-    user: Mapped["User"] = relationship(back_populates="teacher")
+    user: Mapped["BaseUser"] = relationship("BaseUser", lazy="selectin")
 
     __table_args__ = (UniqueConstraint("user_id"),)
 

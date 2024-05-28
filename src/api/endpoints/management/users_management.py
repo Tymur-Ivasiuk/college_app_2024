@@ -1,27 +1,11 @@
-from typing import Annotated, List
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter
 
-from services.users import StudentService
-from api.dependencies.management_dependencies import student_service
-from schemas.users.student import StudentReadDTO
-
+from .student_endpoints import student_router
+from .teacher_endpoints import teacher_router
 
 personal_router = APIRouter(
     prefix="/personal",
-    tags=["Personal"],
 )
-
-
-student_router = APIRouter(
-    prefix="/students",
-    tags=["Students"]
-)
-
-
-@student_router.get('', response_model=List[StudentReadDTO])
-async def get_all_students(student_service: Annotated[StudentService, Depends(student_service)]):
-    students = await student_service.find_all()
-    return students
-
 
 personal_router.include_router(student_router)
+personal_router.include_router(teacher_router)
