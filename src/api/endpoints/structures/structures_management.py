@@ -1,9 +1,11 @@
 from fastapi import APIRouter
-from .department_endpoints import department_router
 
+from .department_endpoints import department_router
+from .specialty_endpoints import specialty_router
 
 structures_router = APIRouter(
     prefix="/structures",
 )
 
 structures_router.include_router(department_router)
+structures_router.include_router(specialty_router)
