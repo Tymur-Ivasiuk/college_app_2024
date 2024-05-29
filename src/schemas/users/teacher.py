@@ -20,7 +20,19 @@ class TeacherWithoutUserCreateDTO(BaseUserCreateDTO):
 class TeacherReadDTO(BaseUserReadDTO):
     id: int
     desc: Optional[str] = None
-    department_id: Optional["DepartmentReadDTO"] = None
+    department_id: Optional[int] = None
+
+    class Config:
+        from_attributes = True
 
 
-TeacherReadDTO.update_forward_refs()
+class TeacherReadRelDTO(BaseUserReadDTO):
+    id: int
+    desc: Optional[str] = None
+    department: Optional["DepartmentReadDTO"] = None
+
+    class Config:
+        from_attributes = True
+
+
+TeacherReadRelDTO.update_forward_refs()

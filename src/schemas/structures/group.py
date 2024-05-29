@@ -15,10 +15,30 @@ class GroupCreateDTO(BaseModel):
     specialty_id: int
 
 
-class GroupReadDTO(GroupCreateDTO):
+class GroupReadDTO(BaseModel):
     id: int
-    curator_id: Optional["TeacherReadDTO"] = None
-    specialty_id: "SpecialtyReadDTO"
+    title: str
+    full_title: str
+    start_year: int
+
+    curator_id: Optional[int] = None
+    specialty_id: int
+
+    class Config:
+        from_attributes = True
 
 
-GroupReadDTO.update_forward_refs()
+class GroupReadRelDTO(BaseModel):
+    id: int
+    title: str
+    full_title: str
+    start_year: int
+
+    curator: Optional["TeacherReadDTO"] = None
+    specialty: "SpecialtyReadDTO"
+
+    class Config:
+        from_attributes = True
+
+
+GroupReadRelDTO.update_forward_refs()

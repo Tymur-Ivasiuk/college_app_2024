@@ -8,3 +8,6 @@ class DepartmentCreateDTO(BaseModel):
 
 class DepartmentReadDTO(DepartmentCreateDTO):
     id: int
+
+    class Config:
+        from_attributes = True

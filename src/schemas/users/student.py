@@ -15,7 +15,12 @@ class StudentWithoutUserCreateDTO(BaseUserCreateDTO):
 
 class StudentReadDTO(BaseUserReadDTO):
     id: int
-    group_id: "GroupReadDTO"
+    group_id: int
 
 
-StudentReadDTO.update_forward_refs()
+class StudentReadRelDTO(BaseUserReadDTO):
+    id: int
+    group: "GroupReadDTO"
+
+
+StudentReadRelDTO.update_forward_refs()
