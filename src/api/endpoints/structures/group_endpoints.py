@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 
 from api.dependencies.structures_dependencies import group_service
 from services.structures import GroupService
-from schemas.structures.group import GroupReadDTO, GroupCreateDTO
+from schemas.structures.group import GroupReadDTO, GroupCreateDTO, GroupReadRelDTO
 
 group_router = APIRouter(
     prefix="/groups",
@@ -12,7 +12,7 @@ group_router = APIRouter(
 )
 
 
-@group_router.get("", response_model=List[GroupReadDTO])
+@group_router.get("", response_model=List[GroupReadRelDTO])
 async def get_groups(group_service: Annotated[GroupService, Depends(group_service)]):
     groups = await group_service.find_all()
     return groups

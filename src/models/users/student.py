@@ -15,7 +15,7 @@ class Student(Base):
 
     # One2One relationship
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-    user: Mapped["BaseUser"] = relationship("BaseUser", lazy="selectin")
+    user: Mapped["BaseUser"] = relationship("BaseUser", lazy="joined")
 
     __table_args__ = (UniqueConstraint("user_id"),)
 

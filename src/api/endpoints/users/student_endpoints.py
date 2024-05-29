@@ -1,9 +1,9 @@
-from typing import Annotated, List
+from typing import Annotated, List, Union
 from fastapi import APIRouter, Depends
 
 from services.users import StudentService
 from api.dependencies.users_dependencies import student_service
-from schemas.users.student import StudentReadDTO
+from schemas.users.student import StudentReadDTO, StudentWithUserCreateDTO, StudentWithoutUserCreateDTO
 
 
 student_router = APIRouter(
@@ -17,3 +17,11 @@ async def get_all_students(student_service: Annotated[StudentService, Depends(st
     students = await student_service.find_all()
     return students
 
+
+@student_router.post("", response_model=StudentReadDTO)
+async def add_department(
+    student: Union[StudentWithUserCreateDTO, StudentWithoutUserCreateDTO],
+    student_service: Annotated[StudentService, Depends(student_service)]
+):
+    student = await student_service.add_one(student)
+    return student

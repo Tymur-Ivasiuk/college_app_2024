@@ -17,7 +17,7 @@ class Teacher(Base):
 
     # One2One relationship
     user_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-    user: Mapped["BaseUser"] = relationship("BaseUser", lazy="selectin")
+    user: Mapped["BaseUser"] = relationship("BaseUser", lazy="joined")
 
     __table_args__ = (UniqueConstraint("user_id"),)
 
@@ -33,6 +33,21 @@ class Teacher(Base):
             is_verified=self.user.is_verified,
         )
 
+    @property
+    def first_name(self):
+        return self.user.first_name
+
+    @property
+    def last_name(self):
+        return self.user.last_name
+
+    @property
+    def patronymic(self):
+        return self.user.patronymic
+
+    @property
+    def email(self):
+        return self.user.email
 
 
 
