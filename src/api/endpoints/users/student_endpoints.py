@@ -3,8 +3,8 @@ from fastapi import APIRouter, Depends
 
 from services.users import StudentService
 from api.dependencies.users_dependencies import student_service
-from schemas.users.student import StudentReadDTO, StudentWithUserCreateDTO, StudentWithoutUserCreateDTO
-
+from schemas.users.student import StudentReadDTO, StudentWithUserCreateDTO, StudentWithoutUserCreateDTO, \
+    StudentReadRelDTO
 
 student_router = APIRouter(
     prefix="/students",
@@ -12,7 +12,7 @@ student_router = APIRouter(
 )
 
 
-@student_router.get('', response_model=List[StudentReadDTO])
+@student_router.get('', response_model=List[StudentReadRelDTO])
 async def get_all_students(student_service: Annotated[StudentService, Depends(student_service)]):
     students = await student_service.find_all()
     return students

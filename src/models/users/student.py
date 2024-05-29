@@ -31,3 +31,19 @@ class Student(Base):
             is_verified=self.user.is_verified,
             group_id=self.group_id
         )
+
+    @property
+    def first_name(self):
+        return self.user.first_name
+
+    @property
+    def last_name(self):
+        return self.user.last_name
+
+    @property
+    def patronymic(self):
+        return self.user.patronymic
+
+    @property
+    def email(self):
+        return self.user.email
