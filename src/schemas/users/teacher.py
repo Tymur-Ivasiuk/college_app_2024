@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import BaseModel
 
-from .base_user import BaseUserReadDTO, BaseUserCreateDTO
+from .base_user import BaseUserReadDTO, BaseUserCreateDTO, BaseUserUpdateDTO
 from ..structures.department import DepartmentReadDTO
 
 
@@ -33,6 +33,16 @@ class TeacherReadRelDTO(BaseUserReadDTO):
 
     class Config:
         from_attributes = True
+
+
+class TeacherUpdateDTO(BaseUserUpdateDTO):
+    desc: Optional[str] = None
+    department_id: Optional[int] = None
+
+
+class TeacherWithoutUserUpdateDTO(BaseModel):
+    desc: Optional[str] = None
+    department_id: Optional[int] = None
 
 
 TeacherReadRelDTO.update_forward_refs()

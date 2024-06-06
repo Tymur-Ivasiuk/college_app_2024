@@ -14,4 +14,4 @@ def student_service():
 
 
 def teacher_service():
-    return TeacherService(TeacherRepository)
+    return TeacherService(TeacherRepository, UserRepository)

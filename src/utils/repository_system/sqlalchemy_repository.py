@@ -80,14 +80,10 @@ class SQLAlchemyRepository(AbstractRepository):
                     values(**data)
                 )
 
-                await session.execute(stmt)
+                res = await session.execute(stmt)
                 await session.commit()
-            updated_rec = await self.get_one(
-                rec_id,
-                to_read_model,
-                selectin_field_names
-            )
-            return updated_rec
+                return res.rowcount != 0
+            return False
 
     async def delete_by_id(self, rec_id: int) -> bool:
         async with async_session_maker() as session:

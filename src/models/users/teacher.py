@@ -31,6 +31,8 @@ class Teacher(Base):
             is_active=self.user.is_active,
             is_superuser=self.user.is_superuser,
             is_verified=self.user.is_verified,
+            desc=self.desc,
+            department_id=self.department_id
         )
 
     @property
