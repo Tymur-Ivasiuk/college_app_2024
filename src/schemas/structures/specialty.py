@@ -8,6 +8,12 @@ class SpecialtyCreateDTO(BaseModel):
     department_id: int | None
 
 
+class SpecialtyUpdateDTO(BaseModel):
+    code: int | None = None
+    title: str | None = None
+    department_id: int | None = None
+
+
 class SpecialtyReadDTO(BaseModel):
     id: int
     code: int
