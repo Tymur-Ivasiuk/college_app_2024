@@ -1,5 +1,7 @@
 from typing import Union
 
+from fastapi import HTTPException
+
 from schemas.users.base_user import BaseUserUpdateDTO
 from schemas.users.student import (
     StudentWithUserCreateDTO,
@@ -56,12 +58,17 @@ class StudentService(BaseUserServiceMixin):
             student = await self.get_one(rec_id=rec_id)
             await self.user_repo.update_by_id(student.user_id, user_dict)
 
-        updated_student = await self.student_repo.update_by_id(
+        update_student_status = await self.student_repo.update_by_id(
             rec_id,
             student_dict,
         )
+        if not update_student_status:
+            raise HTTPException(status_code=404, detail={
+                "info": "No record to update"
+            })
 
-        return updated_student
+        student = await self.get_one(rec_id=rec_id)
+        return student
 
     async def delete_by_id(self, rec_id: int):
         return await self.student_repo.delete_by_id(rec_id)
