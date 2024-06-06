@@ -15,6 +15,15 @@ class GroupCreateDTO(BaseModel):
     specialty_id: int
 
 
+class GroupUpdateDTO(BaseModel):
+    title: str | None = None
+    full_title: str | None = None
+    start_year: int | None = None
+
+    curator_id: int | None = None
+    specialty_id: int | None = None
+
+
 class GroupReadDTO(BaseModel):
     id: int
     title: str

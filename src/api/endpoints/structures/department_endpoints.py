@@ -24,7 +24,6 @@ async def get_department(rec_id: int, department_service: Annotated[DepartmentSe
     return departments
 
 
-
 @department_router.post("", response_model=DepartmentReadDTO)
 async def add_department(
     department_data: DepartmentCreateDTO,
