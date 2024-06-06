@@ -6,6 +6,11 @@ class DepartmentCreateDTO(BaseModel):
     head_id: int
 
 
+class DepartmentUpdateDTO(BaseModel):
+    title: str | None = None
+    head_id: int | None = None
+
+
 class DepartmentReadDTO(DepartmentCreateDTO):
     id: int
 
