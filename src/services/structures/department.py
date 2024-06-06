@@ -14,3 +14,8 @@ class DepartmentService:
         department_dict = department_data.model_dump()
         department = await self.department_repo.add_one(department_dict)
         return department
+
+    async def update_by_id(self, department_data: DepartmentCreateDTO):
+        department_dict = department_data.model_dump()
+        department = await self.department_repo.add_one(department_dict)
+        return department

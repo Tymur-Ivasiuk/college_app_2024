@@ -1,4 +1,4 @@
-from sqlalchemy import insert, select, literal_column, and_
+from sqlalchemy import insert, select, literal_column, and_, update, delete
 from sqlalchemy.orm import selectinload, joinedload
 
 from utils.repository_system import AbstractRepository
@@ -64,6 +64,37 @@ class SQLAlchemyRepository(AbstractRepository):
             limit=1,
         )
         return row[0] if row else {}
+
+    async def update_by_id(
+        self,
+        rec_id: int,
+        data: dict = {},
+        to_read_model: bool = True,
+        selectin_field_names: list = [],
+    ):
+        async with async_session_maker() as session:
+            if data:
+                stmt = (
+                    update(self.model).
+                    filter_by(id=rec_id).
+                    values(**data)
+                )
+
+                await session.execute(stmt)
+                await session.commit()
+            updated_rec = await self.get_one(
+                rec_id,
+                to_read_model,
+                selectin_field_names
+            )
+            return updated_rec
+
+    async def delete_by_id(self, rec_id: int) -> bool:
+        async with async_session_maker() as session:
+            stmt = delete(self.model).where(self.model.id == rec_id)
+            result = await session.execute(stmt)
+            await session.commit()
+            return result.rowcount != 0
 
     def __get_filters_query(self, query, filters_list: list):
         """

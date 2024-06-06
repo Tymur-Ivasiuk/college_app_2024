@@ -22,10 +22,25 @@ class AbstractRepository(ABC):
     ) -> list:
         raise NotImplemented
 
+    @abstractmethod
     async def get_one(
         self,
         rec_id: int,
         to_read_model: bool = True,
         selectin_field_names: list = [],
+    ):
+        raise NotImplemented
+
+    @abstractmethod
+    async def update_by_id(
+            self,
+            rec_id: int,
+            data: dict,
+            to_read_model: bool = True,
+            selectin_field_names: list = [],
     ) -> dict:
+        raise NotImplemented
+
+    @abstractmethod
+    async def delete_by_id(self, rec_id: int) -> bool:
         raise NotImplemented
