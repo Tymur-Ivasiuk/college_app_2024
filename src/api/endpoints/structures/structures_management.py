@@ -3,6 +3,8 @@ from fastapi import APIRouter
 from .department_endpoints import department_router
 from .specialty_endpoints import specialty_router
 from .group_endpoints import group_router
+from .building_endpoints import building_router
+from .classroom_endpoints import classroom_router
 
 
 structures_router = APIRouter(
@@ -12,3 +14,5 @@ structures_router = APIRouter(
 structures_router.include_router(department_router)
 structures_router.include_router(specialty_router)
 structures_router.include_router(group_router)
+structures_router.include_router(building_router)
+structures_router.include_router(classroom_router)

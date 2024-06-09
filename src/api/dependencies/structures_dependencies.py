@@ -1,11 +1,18 @@
-from repositories.structures import DepartmentRepository
-from services.structures import DepartmentService
+from repositories.structures import (
+    DepartmentRepository,
+    SpecialtyRepository,
+    GroupRepository,
+    BuildingRepository,
+    ClassroomRepository,
+)
 
-from repositories.structures import SpecialtyRepository
-from services.structures import SpecialtyService
-
-from repositories.structures import GroupRepository
-from services.structures import GroupService
+from services.structures import (
+    DepartmentService,
+    SpecialtyService,
+    GroupService,
+    BuildingService,
+    ClassroomService,
+)
 
 
 def department_service():
@@ -18,3 +25,11 @@ def specialty_service():
 
 def group_service():
     return GroupService(GroupRepository)
+
+
+def building_service():
+    return BuildingService(BuildingRepository)
+
+
+def classroom_service():
+    return ClassroomService(ClassroomRepository)

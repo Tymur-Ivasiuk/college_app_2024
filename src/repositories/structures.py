@@ -12,3 +12,11 @@ class SpecialtyRepository(SQLAlchemyRepository):
 
 class GroupRepository(SQLAlchemyRepository):
     model = Group
+
+
+class BuildingRepository(SQLAlchemyRepository):
+    model = Building
+
+
+class ClassroomRepository(SQLAlchemyRepository):
+    model = Classroom

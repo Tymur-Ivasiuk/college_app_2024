@@ -5,6 +5,7 @@ from fastapi import FastAPI
 from api.endpoints.users.auth.user_endpoints import auth_router
 from api.endpoints.users.personal_management import personal_router
 from api.endpoints.structures.structures_management import structures_router
+from api.endpoints.learning_process.learning_managment import learning_managment_router
 
 app = FastAPI(
     title="College App",
@@ -15,6 +16,7 @@ app.include_router(auth_router)
 
 app.include_router(personal_router)
 app.include_router(structures_router)
+app.include_router(learning_managment_router)
 
 
 @app.get("/", tags=["Test"])
